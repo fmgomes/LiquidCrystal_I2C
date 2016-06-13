@@ -63,6 +63,15 @@ void LiquidCrystal_I2C::init_priv()
 	begin(_cols, _rows);  
 }
 
+#if defined(ESP8266)
+void LiquidCrystal_I2C::init(int sda, int scl) 
+{
+	Wire.begin(sda, scl);
+	_displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
+	begin(_cols, _rows); 
+}
+#endif
+
 void LiquidCrystal_I2C::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
 	if (lines > 1) {
 		_displayfunction |= LCD_2LINE;

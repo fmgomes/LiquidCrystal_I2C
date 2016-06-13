@@ -85,6 +85,9 @@ public:
 #endif
   void command(uint8_t);
   void init();
+#if defined(ESP8266)
+  void init(int, int);
+#endif
 
 ////compatibility API function aliases
 void blink_on();						// alias for blink()
